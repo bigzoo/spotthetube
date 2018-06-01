@@ -7,6 +7,7 @@
 
         <title>Spot The Tube</title>
 
+        <meta name="description" content="If spotify and youtube had a baby." >
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
 
