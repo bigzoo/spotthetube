@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{csrf_token()}}">
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/app.css') }}">
 </head>
 <body>
 <div class="flex-center position-ref full-height">
@@ -37,6 +37,6 @@
 <footer>
     <b><span class="flex-center">Created with love by&nbsp;<a target="_blank" href="http://bigzoo.me">bigzoo</a></span></b>
 </footer>
-<script src="{{ mix('/js/app.js') }}"></script>
+<script src="{{ asset('/js/app.js') }}"></script>
 </body>
 </html>
