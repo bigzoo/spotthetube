@@ -21,15 +21,13 @@
         </div>
     </div>
     <div id="app" class="container">
-        {{--        @dd($access)--}}
-        @if( in_array(\App\Token::SPOTIFY_PROVIDER, array_column($access, 'provider')) )
-            <a class="btn btn-success btn-block">Connected to Spotify as <u><b>'name'</b></u> </a>
-        @else
+        @foreach($access as $provider)
+            <a class="btn btn-success btn-block">Connected to {{ $provider["provider"] }} as <u><b>{{ $provider["name"] }}</b></u> </a>
+        @endforeach
+        @if( !in_array(\App\Token::SPOTIFY_PROVIDER, array_column($access, 'provider')) )
             <a class="btn btn-success btn-block" href="{{ route('spotify.auth') }}">Connect To Spotify</a>
         @endif
-        @if( in_array(\App\Token::YOUTUBE_PROVIDER, array_column($access, 'provider')) )
-            <a class="btn btn-danger btn-block">Connected to Youtube as <u><b>'name'</b></u> </a>
-        @else
+        @if( !in_array(\App\Token::YOUTUBE_PROVIDER, array_column($access, 'provider')) )
             <a class="btn btn-danger btn-block mt-3" href="{{ route('youtube.auth') }}">Connect To Youtube</a>
         @endif
     </div>
