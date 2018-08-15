@@ -10,7 +10,7 @@ class Token extends Model
     const YOUTUBE_PROVIDER = 'youtube';
     protected $fillable = ['access_token', 'refresh_token', 'provider', 'session_token'];
 
-    public static function updateAccess(string $provider, string $session, string $access, string $refresh = '')
+    public static function updateAccess($provider, $session, $access, $refresh = '')
     {
         static::updateOrCreate([
             ['session_token', $session],

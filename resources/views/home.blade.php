@@ -22,7 +22,8 @@
     </div>
     <div id="app" class="container">
         @foreach($access as $provider)
-            <a class="btn btn-success btn-block">Connected to {{ $provider["provider"] }} as <u><b>{{ $provider["name"] }}</b></u> </a>
+            @php($class = $provider["provider"] == 'spotify' ? 'success': 'danger')
+            <a class="btn btn-{{$class}} btn-block">Connected to {{ $provider["provider"] }} as <u><b>{{ $provider["name"] }}</b></u> </a>
         @endforeach
         @if( !in_array(\App\Token::SPOTIFY_PROVIDER, array_column($access, 'provider')) )
             <a class="btn btn-success btn-block" href="{{ route('spotify.auth') }}">Connect To Spotify</a>

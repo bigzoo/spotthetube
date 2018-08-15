@@ -36,7 +36,10 @@ class AuthController extends Controller
         $token = $request->session()->get('user_token');
         $authorization = Youtube::authorize($code);
         Access::updateAccess(Access::YOUTUBE_PROVIDER, $token,
-            $authorization['access_token']);
+            json_encode([
+                'id_token' => $authorization['id_token'],
+                'access_token' => $authorization['access_token']
+            ]));
         return redirect()->route('home');
     }
 }
