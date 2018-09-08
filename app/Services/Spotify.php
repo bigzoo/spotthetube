@@ -65,4 +65,9 @@ class Spotify implements Provider
             'refresh_token' => $session->getRefreshToken()
         ];
     }
+
+    public function revoke(): void
+    {
+        // TODO: Implement revoke() method.
+    }
 }

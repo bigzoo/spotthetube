@@ -1,9 +1,11 @@
-
 // Fonts
 @import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
 
 // Variables
 @import "variables";
+
+// Mixins
+@import "mixins";
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
@@ -47,6 +49,7 @@ html, body {
 
 .title {
   font-size: 84px;
+  @include boring-link;
 }
 
 .links > a {
@@ -73,4 +76,12 @@ footer {
   left: 0;
   right: 0;
   margin-bottom: 20px;
+}
+
+.logout-buttons {
+  cursor: initial !important;
+  .logout-icons {
+    margin-top: 0.4rem;
+    cursor: pointer;
+  }
 }

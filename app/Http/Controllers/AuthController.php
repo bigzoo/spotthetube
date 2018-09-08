@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Session;
 use App\Token as Access;
 use App\Services\Spotify;
 use App\Services\Youtube;
@@ -40,6 +41,18 @@ class AuthController extends Controller
                 'id_token' => $authorization['id_token'],
                 'access_token' => $authorization['access_token']
             ]));
+        return redirect()->route('home');
+    }
+
+    public function logout(Request $request)
+    {
+        $token = Session::find($request->session()->get('user_token'))
+                        ->token;
+        $provider = $request->get('provider');
+        Access::where(
+            ['session_token' =>$token],
+            ['provider' => $provider])
+            ->first()->delete();
         return redirect()->route('home');
     }
 }

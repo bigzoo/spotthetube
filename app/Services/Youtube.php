@@ -58,4 +58,9 @@ class Youtube implements Provider
     {
         return static::session()->fetchAccessTokenWithAuthCode($code);
     }
+
+    public function revoke(): void
+    {
+        // TODO: Implement revoke() method.
+    }
 }

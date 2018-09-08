@@ -10,6 +10,8 @@ interface Provider
 
     public static function authorize(string $code) : array;
 
+    public function revoke(): void;
+
     public function account();
 
     public function name();
