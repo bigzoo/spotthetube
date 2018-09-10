@@ -2,6 +2,8 @@
 
 namespace App\Services;
 
+use App\Music\Playlist;
+
 interface Provider
 {
     public static function session();
@@ -15,5 +17,7 @@ interface Provider
     public function account();
 
     public function name();
+
+    public function playlist(string $link): Playlist;
 
 }

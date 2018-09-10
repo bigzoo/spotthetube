@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Services;
+
+use App\Music\Playlist;
 use Google_Client;
 use App\Token as Access;
 
@@ -62,5 +64,10 @@ class Youtube implements Provider
     public function revoke(): void
     {
         // TODO: Implement revoke() method.
+    }
+
+    public function playlist(string $link): Playlist
+    {
+        // TODO: Implement playlist() method.
     }
 }

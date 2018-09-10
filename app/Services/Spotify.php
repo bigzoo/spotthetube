@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Music\Playlist;
 use App\Token as Access;
 use SpotifyWebAPI\Session as SpotifySession;
 use SpotifyWebAPI\SpotifyWebAPI as Api;
@@ -69,5 +70,10 @@ class Spotify implements Provider
     public function revoke(): void
     {
         // TODO: Implement revoke() method.
+    }
+
+    public function playlist(string $link): Playlist
+    {
+        // TODO: Implement playlist() method.
     }
 }
