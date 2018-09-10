@@ -27,4 +27,4 @@
 @endsection
 @section('scripts')
 <script src="https://unpkg.com/popper.js/dist/umd/popper.min.js"></script>
-@show
+@endsection

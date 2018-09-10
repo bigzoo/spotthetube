@@ -24,7 +24,7 @@
     <div id="app" class="container">@yield('content')</div>
 </div>
 <footer>
-    <b><span class="flex-center">Created with love by&nbsp;<a target="_blank" href="http://bigzoo.me">bigzoo</a></span></b>
+    <b><span class="flex-center">Created with&nbsp;<span class="text-muted strike-through">love</span>&nbsp;<span class="text-dark">code</span>&nbsp;by&nbsp;<a target="_blank" href="http://bigzoo.me">bigzoo</a></span></b>
 </footer>
 <script src="{{ asset('/js/app.js') }}"></script>
 @yield('scripts')

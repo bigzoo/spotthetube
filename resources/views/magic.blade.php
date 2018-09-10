@@ -1,4 +1,4 @@
 @extends('layout')
 @section('content')
-    <magic></magic>
+    <magic session="{{ $session }}"></magic>
 @show
