@@ -2,8 +2,12 @@
 
 namespace App\Services;
 
+use App\Music\Artist;
+use App\Music\Image;
 use App\Music\Playlist;
+use App\Music\Track;
 use App\Token as Access;
+use Illuminate\Support\Collection;
 use SpotifyWebAPI\Session as SpotifySession;
 use SpotifyWebAPI\SpotifyWebAPI as Api;
 
@@ -74,6 +78,24 @@ class Spotify implements Provider
 
     public function playlist(string $link): Playlist
     {
-        // TODO: Implement playlist() method.
+        $explodedLink = explode('/', $link);
+        $userId = $explodedLink[4];
+        $playlistId = $explodedLink[6];
+        $playlist = $this->client->getUserPlaylist($userId, $playlistId);
+        $image = new Image($playlist->images[1]->url);
+        $tracks = collect($playlist->tracks->items)->map(function ($track){
+            $track = $track->track;
+            $artists = $this->getArtists($track);
+            return new Track($track->name, $track->preview_url, $artists);
+        });
+        return new Playlist($link, $playlist->name, $playlist->description, $playlist->owner->display_name
+            , $playlist->tracks->total, $image, $tracks);
+    }
+
+    private function getArtists($track) : Collection
+    {
+        return collect($track->artists)->map(function ($artist){
+            return new Artist($artist->name);
+        });
     }
 }
