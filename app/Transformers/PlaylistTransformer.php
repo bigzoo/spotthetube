@@ -7,22 +7,23 @@ use League\Fractal\TransformerAbstract;
 
 class PlaylistTransformer extends TransformerAbstract
 {
-    protected $availableIncludes = ['tracks'];
+//    protected $defaultIncludes = ['tracks'];
     public function transform(Playlist $playlist)
     {
-        dd($this->includeTracks($playlist));
         return [
             'link' => $playlist->link,
             'name' => $playlist->name,
             'description' => $playlist->description,
             'author' => $playlist->author,
-            'length' => $playlist->length,
+            'length' => (int) $playlist->length,
             'image' => $playlist->image->src,
+            'tracks' => $this->includeTracks($playlist)
         ];
     }
 
     public function includeTracks(Playlist $playlist)
     {
-        return $this->collection($playlist->tracks, TrackTransformer::class);
+        return $playlist->tracks->toArray();
+//        return $this->collection($playlist->tracks, TrackTransformer::class);
     }
 }
