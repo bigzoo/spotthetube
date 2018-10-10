@@ -11,7 +11,8 @@
         "google/apiclient": "^2.2",
         "jwilsson/spotify-web-api-php": "^2.2",
         "laravel/framework": "5.6.*",
-        "laravel/tinker": "^1.0"
+        "laravel/tinker": "^1.0",
+        "ext-json": "*"
     },
     "require-dev": {
         "filp/whoops": "^2.0",

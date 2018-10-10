@@ -8,6 +8,9 @@
                     <input @keyup.enter="submit" v-model.trim="link" class="form-control form-control-lg" type="url" placeholder="http://..." required>
                     <span><button @click="submit" class="btn btn-lg btn-light btn-outline-dark">Go!</button></span>
                 </div>
+                <div class="py-4">
+                    <playlist v-if="showPlaylist" :playlist="playlist" />
+                </div>
             </div>
         </div>
     </div>
@@ -17,11 +20,16 @@
     'use strict';
     import { required, url } from 'vuelidate/lib/validators'
     import Api from '../api/axios'
+    import Playlist from './Playlist'
     export default {
+        components: {
+            Playlist
+        },
         data: function(){
             return {
                 link: 'https://open.spotify.com/user/315hivothulerhv64u6dozylif3i/playlist/4qcbspFEPfoPVjDhujCtwY?si=3HH9pJ5yR1GLh1aOvkiUsQ',
-                responseData: {},
+                showPlaylist: false,
+                playlist: {},
             }
         },
         methods: {
@@ -30,7 +38,8 @@
                     session: this.session,
                     link: this.link
                 };
-                this.responseData = (await (new Api).get('search', params)).data
+                this.playlist = (await (new Api).get('search', params)).data.data;
+                this.showPlaylist = true
             },
             validate: function (val) {
                 return val.replace(/\s/g,'')
