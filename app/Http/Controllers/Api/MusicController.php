@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Exceptions\UnsupportedLink;
 use Illuminate\Database\Eloquent\Collection;
 use App\Transformers\PlaylistTransformer;
 use App\Http\Controllers\Controller;
@@ -43,6 +44,7 @@ class MusicController extends Controller
     /**
      * @param string $link
      * @return string
+     * @throws UnsupportedLink
      */
     private function checkProvider(string $link): string
     {
@@ -58,6 +60,7 @@ class MusicController extends Controller
         if ($matches){
             return Access::YOUTUBE_PROVIDER;
         }
+        throw new UnsupportedLink();
     }
 
 }
