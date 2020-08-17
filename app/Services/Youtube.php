@@ -1,16 +1,34 @@
 <?php
 
 namespace App\Services;
-use Google_Client;
 
+use App\Music\Playlist;
+use Google_Client;
+use App\Token as Access;
 
 class Youtube implements Provider
 {
-
     const OPTIONS = [
+        'profile',
         'https://www.googleapis.com/auth/youtube'
     ];
     protected $client;
+    protected $userData;
+
+    public function __construct($token)
+    {
+        $auth = Access::where([
+            ['session_token', $token],
+            ['provider', Access::YOUTUBE_PROVIDER]
+        ])
+            ->get()
+            ->first()
+            ->access_token;
+        $auth = json_decode($auth);
+        $this->client = static::session();
+        $this->client->setAccessToken($auth->access_token);
+        $this->userData = $this->client->verifyIdToken($auth->id_token);
+    }
 
     public static function session()
     {
@@ -28,7 +46,7 @@ class Youtube implements Provider
 
     public function name()
     {
-        // TODO: Implement name() method.
+        return $this->userData['name'];
     }
 
     public static function authUrl()
@@ -41,5 +59,15 @@ class Youtube implements Provider
     public static function authorize(string $code): array
     {
         return static::session()->fetchAccessTokenWithAuthCode($code);
+    }
+
+    public function revoke(): void
+    {
+        // TODO: Implement revoke() method.
+    }
+
+    public function playlist(string $link): Playlist
+    {
+        // TODO: Implement playlist() method.
     }
 }

@@ -1,0 +1,8 @@
+@mixin boring-link{
+  color: black !important;
+  text-decoration: none !important;
+  :hover {
+    color: black !important;
+    text-decoration: underline !important;
+  }
+}

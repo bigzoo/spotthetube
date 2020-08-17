@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Services\Spotify;
+use App\Services\Youtube;
 use App\Session;
 use App\Token as Access;
 use Illuminate\Http\Request;
@@ -25,6 +26,9 @@ class HomeController extends Controller
                 $name = '';
                 if ($access->provider == Access::SPOTIFY_PROVIDER) {
                     $name = (new Spotify($access->session_token))->name();
+                }
+                if ($access->provider == Access::YOUTUBE_PROVIDER) {
+                    $name = (new Youtube($access->session_token))->name();
                 }
                 return [
                     'provider' => $access->provider,

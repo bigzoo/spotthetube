@@ -1,28 +1,18 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 /**
  * General Routes
  */
 Route::get('/', 'HomeController@home')->name('home');
 Route::get('about', 'HomeController@about')->name('about');
+Route::get('magic', 'MagicController@index')->name('magic');
 
 /**
  * Spotify and Youtube Authentication Routes
  */
 Route::get('auth/spotify','AuthController@spotifyAuth')->name('spotify.auth');
 Route::get('auth/youtube','AuthController@youtubeAuth')->name('youtube.auth');
-
+Route::get('logout', 'AuthController@logout')->name('logout');
 
 /**
  * Spotify and Youtube Authentication Callback Routes
